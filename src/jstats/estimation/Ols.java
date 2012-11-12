@@ -28,14 +28,13 @@ public class Ols {
         DoubleMatrix xy = xData.transpose().mmul(yData);
 
         DoubleMatrix b = Solve.solve(xx, xy);
-            
+
         return b;
     }
 
     private static DoubleMatrix concatConsts(DoubleMatrix data) {
-        double[] consts = new double[data.rows];
-        Arrays.fill(consts, 1);
-        return DoubleMatrix.concatHorizontally(data, new DoubleMatrix(consts));
+        DoubleMatrix consts = DoubleMatrix.ones(data.rows);
+        return DoubleMatrix.concatHorizontally(data, consts);
     }
 
 }
